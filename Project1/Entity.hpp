@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include "Grid.hpp"
 
+using namespace sf;
+using namespace std;
+
 class Entity {
 public:
     sf::RectangleShape shape;

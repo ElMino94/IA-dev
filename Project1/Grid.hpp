@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+using namespace sf;
+using namespace std;
+
 const int GRID_WIDTH = 20;
 const int GRID_HEIGHT = 15;
 const int CELL_SIZE = 40;

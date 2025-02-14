@@ -3,6 +3,9 @@
 
 #include "Entity.hpp"
 
+using namespace sf;
+using namespace std;
+
 class Enemy : public Entity {
 public:
     static constexpr float SPEED = 100.0f;
