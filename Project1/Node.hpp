@@ -3,6 +3,9 @@
 
 #include <SFML/System/Vector2.hpp>
 
+using namespace std;
+using namespace sf;
+
 struct Node {
     sf::Vector2i position;
     int gCost, hCost, fCost;

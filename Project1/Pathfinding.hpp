@@ -2,8 +2,11 @@
 #define PATHFINDING_H
 
 #include "Grid.hpp"
-#include "Node.h"
+#include "Node.hpp"
 #include <vector>
+
+using namespace std;
+using namespace sf;
 
 class Pathfinding {
 public:
