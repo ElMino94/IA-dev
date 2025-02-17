@@ -1,9 +1,9 @@
 #include "Enemy.hpp"
 #include <cmath>
 
-Enemy::Enemy(float x, float y) : Entity(x, y, sf::Color::Red) {}
+Enemy::Enemy(float x, float y) : Entity(x, y) {}
 
-void Enemy::update(float deltaTime, Grid& grid) {
+void Enemy::update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) {
 
 }
 

@@ -12,8 +12,8 @@ public:
     sf::RectangleShape shape;
     sf::Vector2f velocity;
 
-    Entity(float x, float y, sf::Color color);
-    virtual void update(float deltaTime, Grid& grid) = 0;
+    Entity(float x, float y);
+    virtual void update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) = 0;
 };
 
 #endif // ENTITY_HPP

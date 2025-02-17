@@ -4,6 +4,7 @@
 #include "boost_pad.hpp"  
 #include "Grid.hpp"
 #include <vector>
+#include "Hunter.hpp"
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
@@ -14,6 +15,7 @@ int main() {
 
     Player player(200, 400);
     std::vector<Enemy> enemies = { Enemy(100, 100), Enemy(700, 100) };
+    std::vector<Hunter> hunters = { Hunter(150, 100) };
     std::vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
     Grid grid;
     grid.loadFromFile("map.txt");
@@ -30,10 +32,13 @@ int main() {
                 window.close();
         }
 
-        player.update(deltaTime, grid);
+        player.update(deltaTime, grid, player.shape.getPosition());
         for (auto& enemy : enemies) {
-            enemy.update(deltaTime, grid);
+            enemy.update(deltaTime, grid, player.shape.getPosition());
             enemy.check_collision(player);  
+        }
+        for (auto& hunter : hunters) {
+            hunter.update(deltaTime, grid, player.shape.getPosition());
         }
 
         for (auto it = boostPads.begin(); it != boostPads.end(); ) {
@@ -52,8 +57,12 @@ int main() {
             boostPad.draw(window); 
         }
         window.draw(player.shape);
-        for (const auto& enemy : enemies)
+        for (const auto& enemy : enemies) {
             window.draw(enemy.shape);
+        }
+        for (const auto& hunter : hunters) {
+            window.draw(hunter.shape);
+        }
         window.display();
     }
     return 0;
