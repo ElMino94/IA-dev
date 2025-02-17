@@ -4,7 +4,6 @@
 #include "Grid.hpp"
 #include <vector>
 
-
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
@@ -32,6 +31,7 @@ int main() {
         player.update(deltaTime, grid);
         for (auto& enemy : enemies) {
             enemy.update(deltaTime, grid);
+            enemy.check_collision(player); 
         }
 
         window.clear();
@@ -43,4 +43,3 @@ int main() {
     }
     return 0;
 }
-
