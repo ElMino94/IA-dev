@@ -1,8 +1,8 @@
 collision enemy
 utiliser le pathing sur le hunter ---------------
 faire en sorte que le player puisse poser des blocs
-ustiliser le behavior treed sur le patrol
-utiliser le GOAT sur le hunter pour les prises de décisions -----------
+ustiliser le behavior tree sur le patrol
+utiliser le GOAP sur le hunter pour les prises de décisions -----------
 
 
 
