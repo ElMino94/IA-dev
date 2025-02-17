@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "boost_pad.hpp"  
 #include "Grid.hpp"
 #include <vector>
 
@@ -13,6 +14,7 @@ int main() {
 
     Player player(200, 400);
     std::vector<Enemy> enemies = { Enemy(100, 100), Enemy(700, 100) };
+    std::vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
     Grid grid;
     grid.loadFromFile("map.txt");
 
@@ -31,11 +33,24 @@ int main() {
         player.update(deltaTime, grid);
         for (auto& enemy : enemies) {
             enemy.update(deltaTime, grid);
-            enemy.check_collision(player); 
+            enemy.check_collision(player);  
+        }
+
+        for (auto it = boostPads.begin(); it != boostPads.end(); ) {
+            if (it->checkCollision(player.shape)) {
+                player.activateBoost(2.f);  
+                it = boostPads.erase(it);  
+            }
+            else {
+                ++it;  
+            }
         }
 
         window.clear();
         grid.draw(window);
+        for (const auto& boostPad : boostPads) {
+            boostPad.draw(window); 
+        }
         window.draw(player.shape);
         for (const auto& enemy : enemies)
             window.draw(enemy.shape);
