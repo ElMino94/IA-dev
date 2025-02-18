@@ -13,16 +13,24 @@ using namespace std;
 
 class Patrol : public Enemy {
 private:
-	
 	vector<Vector2f> waypoints;
 	int currentWaypointIndex = 0;
-	float detectionRadius = 100.0f;
 	Vector2f playerPosition;
+	BlackBoard blackboard;
+	unique_ptr<BTNode> behaviorTree;
+
+	
 
 public:
+	static const float SPEED;
+	static const float DETECTION_RADIUS;
+
 	Patrol(float x, float y);
 
-	void update(float deltaTime, Grid& grid, Vector2f playerPos);
 	void setWaypoints(const vector<Vector2f>& newWaypoints);
-	
+	void update(float deltaTime, Grid& grid, Vector2f playerPos);
+	void chasePlayer(float deltaTime);
+	void patrol(float deltaTime);
+
+	void buildBehaviorTree();
 };
