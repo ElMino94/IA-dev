@@ -1,6 +1,11 @@
 #include "Patrol.hpp"
 #include "Grid.hpp"
+#include "BehaviorTree.hpp"
+#include <cmath>
 #include <iostream>
+
+const float Patrol::SPEED = 100.0f;
+const float Patrol::DETECTION_RADIUS = 150.0f;
 
 Patrol::Patrol(float x, float y) : Enemy(x, y) {
     shape.setFillColor(Color::Green);
@@ -35,71 +40,3 @@ void Patrol::update(float deltaTime, Grid& grid, Vector2f playerPos) {
     }
 }
 
-
-//void Patrol::update(float deltaTime, Grid& grid, Vector2f playerPos) {
-//    playerPosition = playerPos;
-//
-//    Vector2f diff = playerPosition - getPosition();
-//    float distanceToPlayer = sqrt(diff.x * diff.x + diff.y * diff.y);
-//
-//    if (distanceToPlayer < detectionRadius && canSeePlayer(grid)) {
-//        state = PatrolState::CHASING;
-//    }
-//    else if (state == PatrolState::CHASING && distanceToPlayer > detectionRadius * 1.2f) {
-//        state = PatrolState::PATROLLING;
-//    }
-//
-//    if (state == PatrolState::CHASING) {
-//        chasePlayer(deltaTime);
-//    }
-//    else {
-//        patrol(deltaTime);
-//    }
-//}
-
-//void Patrol::chasePlayer(float deltaTime) {
-//    Vector2f direction = playerPosition - getPosition();
-//    float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-//
-//    if (distance > 5.0f) {
-//        direction /= distance;
-//        Vector2f newPosition = getPosition() + direction * SPEED * deltaTime;
-//        setPosition(newPosition);
-//    }
-//}
-//
-//void Patrol::patrol(float deltaTime) {
-//    if (waypoints.empty()) return;
-//
-//    Vector2f currentPos = getPosition();
-//    Vector2f target = waypoints[currentWaypointIndex];
-//    Vector2f direction = target - currentPos;
-//    float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-//
-//    if (distance > 5.0f) {
-//        direction /= distance;
-//        Vector2f newPosition = currentPos + direction * SPEED * deltaTime;
-//        setPosition(newPosition);
-//    }
-//    else {
-//        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.size();
-//    }
-//}
-//
-//bool canSeePlayer(Grid& grid) {
-//    Vector2f direction = playerPosition - getPosition();
-//    float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-//    if (distance > detectionRadius) return false;
-//    Vector2f step = direction / distance;
-//    Vector2f currentPos = getPosition();
-//    Vector2f pos = currentPos;
-//    for (int i = 0; i < distance; ++i) {
-//        pos += step;
-//        int gridX = static_cast<int>(pos.x / CELL_SIZE);
-//        int gridY = static_cast<int>(pos.y / CELL_SIZE);
-//        if (!grid.getCell(gridX, gridY).walkable) {
-//            return false;
-//        }
-//    }
-//    return true;
-//}
