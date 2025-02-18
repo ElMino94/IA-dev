@@ -18,7 +18,7 @@ public:
     Entity(float x, float y);
     virtual void update(float deltaTime, Grid& grid, Vector2f playerPosition) = 0;
 	Vector2f getPosition() const;
-	void setPosition(const Vector2f& pos);
+	void setPosition(const Vector2f& pos); 
 };
 
 #endif // ENTITY_HPP

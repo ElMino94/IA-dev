@@ -1,7 +1,7 @@
 #ifndef HUNTER_HPP
 #define HUNTER_HPP
 
-#include "Entity.hpp"
+#include "Enemy.hpp"
 #include "Grid.hpp"
 #include "Pathfinding.hpp"
 
@@ -11,6 +11,7 @@ public:
 
     void update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) override;
     void draw(sf::RenderWindow& window);
+    void check_collision(const Entity& player);
 
 private:
     float speed = 100.0f; 

@@ -73,9 +73,10 @@ int main() {
 			enemy.update(deltaTime, grid, player.getPosition());
             window.draw(enemy.shape);
         }
-        for (const auto& hunter : hunters) {
+        for (auto& hunter : hunters) {
             window.draw(hunter.shape);
-        }
+            hunter.check_collision(player);
+        }      
         window.display();
     }
     return 0;
