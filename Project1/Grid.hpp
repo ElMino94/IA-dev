@@ -26,6 +26,7 @@ public:
     void loadFromFile(const std::string& filename);
     void draw(sf::RenderWindow& window);
     Cell& getCell(int x, int y);
+    const Cell& getCell(int x, int y) const;
 
 	vector<Vector2f> patrolPositions;
 };

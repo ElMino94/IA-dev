@@ -56,3 +56,10 @@ void Grid::draw(RenderWindow& window) {
 Cell& Grid::getCell(int x, int y) {
     return cells[y][x];
 }
+
+const Cell& Grid::getCell(int x, int y) const
+{
+    return cells[y][x];
+}
+
+

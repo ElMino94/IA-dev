@@ -20,7 +20,7 @@ int main() {
     Player player(200, 400);
 
     vector<Patrol> enemies;
-    vector<Hunter> hunters = { Hunter(150, 100) };
+    vector<Hunter> hunters = { Hunter(150, 100), Hunter(300, 200) };
     vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
 
     Grid grid;
