@@ -21,6 +21,7 @@ struct Cell {
 class Grid {
 private:
     vector<vector<Cell>> cells;
+    int wall_limit;
 public:
     Grid();
     void loadFromFile(const std::string& filename);

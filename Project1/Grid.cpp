@@ -1,7 +1,7 @@
 #include "grid.hpp"
 #include <fstream>
 #include <iostream>
-
+ 
 
 Grid::Grid() {
     cells.resize(GRID_HEIGHT, vector<Cell>(GRID_WIDTH, { true, {0, 0}, RectangleShape(Vector2f(CELL_SIZE, CELL_SIZE)) }));
@@ -67,8 +67,16 @@ void Grid::handleClick(int mouseX, int mouseY) {
     int y = mouseY / CELL_SIZE;
 
     if (x >= 0 && x < GRID_WIDTH && y >= 0 && y < GRID_HEIGHT) {
-        cells[y][x].walkable = !cells[y][x].walkable;  
-        cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
+        if (cells[y][x].walkable && wall_limit <= 10) {
+            wall_limit++;
+            cells[y][x].walkable = !cells[y][x].walkable;
+            cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
+        }     
+        else if (!cells[y][x].walkable) {
+            wall_limit--;
+            cells[y][x].walkable = !cells[y][x].walkable;
+            cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
+        }
     }
 }
 
