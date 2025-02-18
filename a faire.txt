@@ -1,5 +1,4 @@
 collision enemy
-utiliser le pathing sur le hunter ---------------
 faire en sorte que le player puisse poser des blocs
 ustiliser le behavior tree sur le patrol
 utiliser le GOAP sur le hunter pour les prises de décisions -----------
