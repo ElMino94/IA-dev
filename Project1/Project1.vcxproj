@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="boost_pad.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BehaviorTree.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Grid.hpp" />
