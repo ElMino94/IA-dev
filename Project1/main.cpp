@@ -43,6 +43,11 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == Event::Closed)
                 window.close();
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    grid.handleClick(event.mouseButton.x, event.mouseButton.y);
+                }
+            }
         }
 
         player.update(deltaTime, grid, player.shape.getPosition());
