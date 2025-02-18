@@ -1,15 +1,25 @@
 #include "Hunter.hpp"
 
-Hunter::Hunter(float x, float y) : Entity(x, y) {}
+Hunter::Hunter(float x, float y) : Entity(x, y), lastPathNode(-1, -1) {}
 
 void Hunter::update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) {
     if (needsRepath || path.empty()) {
-        sf::Vector2i start(static_cast<int>(shape.getPosition().x / CELL_SIZE), static_cast<int>(shape.getPosition().y / CELL_SIZE));
-        sf::Vector2i end(static_cast<int>(playerPosition.x / CELL_SIZE), static_cast<int>(playerPosition.y / CELL_SIZE));
+        sf::Vector2i start;
+
+        if (lastPathNode != sf::Vector2i(-1, -1)) {
+            start = lastPathNode;
+        }
+        else {
+            start = sf::Vector2i(static_cast<int>(shape.getPosition().x / CELL_SIZE),
+                static_cast<int>(shape.getPosition().y / CELL_SIZE));
+        }
+
+        sf::Vector2i end(static_cast<int>(playerPosition.x / CELL_SIZE),
+            static_cast<int>(playerPosition.y / CELL_SIZE));
 
         path = Pathfinding::findPath(grid, start, end);
-        pathIndex = 1;  
-        needsRepath = false; 
+        pathIndex = 1;
+        needsRepath = false;
     }
 
     if (!path.empty() && pathIndex < path.size()) {
@@ -26,14 +36,16 @@ void Hunter::update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) {
         setPosition(nextPosition);
 
         if (length < 5.f) {
-            pathIndex++;
+            lastPathNode = currentTargetNode;
+            needsRepath = true;
         }
     }
+
     if (pathIndex >= path.size()) {
-        needsRepath = true;  
+        needsRepath = true;
     }
 }
 
 void Hunter::draw(sf::RenderWindow& window) {
-    window.draw(shape);  
+    window.draw(shape);
 }

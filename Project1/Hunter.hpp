@@ -18,6 +18,7 @@ private:
     int pathIndex = 0;
     sf::Clock moveClock;
     bool needsRepath = false;
+    sf::Vector2i lastPathNode; 
 };
 
-#endif 
+#endif
