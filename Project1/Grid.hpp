@@ -27,6 +27,7 @@ public:
     void draw(sf::RenderWindow& window);
     Cell& getCell(int x, int y);
     const Cell& getCell(int x, int y) const;
+    void handleClick(int mouseX, int mouseY);
 
 	vector<Vector2f> patrolPositions;
 };
