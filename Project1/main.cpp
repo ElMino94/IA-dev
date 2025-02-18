@@ -47,7 +47,7 @@ int main() {
 
         player.update(deltaTime, grid, player.shape.getPosition());
         for (auto& enemy : enemies) {
-            enemy.update(deltaTime, grid);
+            enemy.update(deltaTime, grid, player.getPosition());
         }
         for (auto& hunter : hunters) {
             hunter.update(deltaTime, grid, player.shape.getPosition());
@@ -70,7 +70,7 @@ int main() {
         }
         window.draw(player.shape);
         for (auto& enemy : enemies) {
-			enemy.update(deltaTime, grid);
+			enemy.update(deltaTime, grid, player.getPosition());
             window.draw(enemy.shape);
         }
         for (const auto& hunter : hunters) {
