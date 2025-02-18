@@ -5,3 +5,12 @@ Entity::Entity(float x, float y) {
     shape.setPosition(x, y);
     shape.setFillColor(sf::Color::Red);
 }
+
+Vector2f Entity::getPosition() const {
+    return position;
+}
+
+void Entity::setPosition(const Vector2f& pos) {
+    position = pos;
+    shape.setPosition(position);
+}

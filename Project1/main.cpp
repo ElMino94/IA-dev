@@ -5,37 +5,49 @@
 #include "Grid.hpp"
 #include <vector>
 #include "Hunter.hpp"
+#include "Patrol.hpp"
+
+using namespace sf;
+using namespace std;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
+    RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
     Player player(200, 400);
-    std::vector<Enemy> enemies = { Enemy(100, 100), Enemy(700, 100) };
-    std::vector<Hunter> hunters = { Hunter(150, 100) };
-    std::vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
+
+    vector<Patrol> enemies;
+    vector<Hunter> hunters = { Hunter(150, 100) };
+    vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
+
     Grid grid;
+
     grid.loadFromFile("map.txt");
 
-    sf::Clock clock;
+    for (const auto& pos : grid.patrolPositions) {
+        enemies.emplace_back(pos.x, pos.y);
+    }
+    enemies[0].setWaypoints({ {400, 200}, {400, 400}, {600, 400}, {600, 200} });
+    enemies[1].setWaypoints({ {600, 200}, {600, 400}, {400, 400}, {400, 200} });
+
+    Clock clock;
 
     while (window.isOpen()) {
-        sf::Time dt = clock.restart();
+        Time dt = clock.restart();
         float deltaTime = dt.asSeconds();
 
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == Event::Closed)
                 window.close();
         }
 
         player.update(deltaTime, grid, player.shape.getPosition());
         for (auto& enemy : enemies) {
-            enemy.update(deltaTime, grid, player.shape.getPosition());
-            enemy.check_collision(player);  
+            enemy.update(deltaTime, grid);
         }
         for (auto& hunter : hunters) {
             hunter.update(deltaTime, grid, player.shape.getPosition());
@@ -57,7 +69,8 @@ int main() {
             boostPad.draw(window); 
         }
         window.draw(player.shape);
-        for (const auto& enemy : enemies) {
+        for (auto& enemy : enemies) {
+			enemy.update(deltaTime, grid);
             window.draw(enemy.shape);
         }
         for (const auto& hunter : hunters) {

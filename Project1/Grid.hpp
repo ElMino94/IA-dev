@@ -14,18 +14,20 @@ const int CELL_SIZE = 40;
 
 struct Cell {
     bool walkable;
-    sf::Vector2f position;
-    sf::RectangleShape shape;
+    Vector2f position;
+    RectangleShape shape;
 };
 
 class Grid {
+private:
+    vector<vector<Cell>> cells;
 public:
     Grid();
     void loadFromFile(const std::string& filename);
     void draw(sf::RenderWindow& window);
     Cell& getCell(int x, int y);
-private:
-    std::vector<std::vector<Cell>> cells;
+
+	vector<Vector2f> patrolPositions;
 };
 
 #endif      
