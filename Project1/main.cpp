@@ -29,8 +29,15 @@ int main() {
     for (const auto& pos : grid.boost_Positions) {
         boostPads.emplace_back(pos.x, pos.y);
     }
-    enemies[0].setWaypoints({ {400, 200}, {400, 400}, {600, 400}, {600, 200} });
-    enemies[1].setWaypoints({ {600, 200}, {600, 400}, {400, 400}, {400, 200} });
+    for (auto& enemy : enemies)
+    {
+        enemies[0].setWaypoints({ {400, 200}, {400, 400}, {600, 400}, {600, 200} });
+        enemy.buildBehaviorTree();
+    }
+    for (auto& enemy : enemies) {
+        enemies[1].setWaypoints({ {600, 200}, {600, 400}, {400, 400}, {400, 200} });
+        enemy.buildBehaviorTree();
+    }
 
     Clock clock;
 
