@@ -44,11 +44,13 @@ public:
 	void AddChild(unique_ptr<BTNode> child);
 	NodeState execute() override;
 };
+
 class ConditionNode : public BTNode {
 private:
 	BlackBoard& blackboard;
 	string key;
-	int expectedValue;
+	/*int expectedValue;*/
+	int thresthold;
 public:
 	ConditionNode(BlackBoard& bb, const string& key, int value);
 	NodeState execute() override;
