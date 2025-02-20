@@ -2,9 +2,7 @@
 #define HUNTER_HPP
 
 #include "Enemy.hpp"
-#include "Grid.hpp"
 #include "Pathfinding.hpp"
-
 
 class Hunter : public Entity {
 public:

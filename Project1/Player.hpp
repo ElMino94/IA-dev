@@ -3,9 +3,6 @@
 
 #include "Entity.hpp"
 
-using namespace sf;
-using namespace std;
-
 class Player : public Entity {
 public:
     static constexpr float n_speed = 200.0f;
@@ -21,4 +18,4 @@ private:
     bool isBoosted;
 };
 
-#endif // PLAYER_HPP
+#endif 

@@ -1,4 +1,3 @@
-// player.cpp
 #include "Player.hpp"
 #include <SFML/Window/Keyboard.hpp>
 

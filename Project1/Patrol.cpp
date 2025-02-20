@@ -1,6 +1,4 @@
 #include "Patrol.hpp"
-#include "Grid.hpp"
-#include "BehaviorTree.hpp"
 #include <cmath>
 #include <iostream>
 

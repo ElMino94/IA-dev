@@ -1,15 +1,9 @@
 #pragma once
 
 #include "Enemy.hpp"
-#include "Grid.hpp"
 #include "BehaviorTree.hpp"
 #include <vector>
 #include <memory>
-
-using namespace sf;
-using namespace std;
-
-
 
 class Patrol : public Enemy {
 private:
