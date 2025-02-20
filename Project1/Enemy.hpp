@@ -3,9 +3,6 @@
 
 #include "Entity.hpp"
 
-using namespace sf;
-using namespace std;
-
 class Enemy : public Entity {
 public:
     static constexpr float SPEED = 100.0f;
@@ -14,4 +11,4 @@ public:
     void check_collision(const Entity& player); 
 };
 
-#endif // ENEMY_HPP
+#endif 

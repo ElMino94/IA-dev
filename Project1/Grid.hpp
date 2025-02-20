@@ -4,7 +4,6 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <string>
-
 using namespace sf;
 using namespace std;
 
@@ -24,8 +23,8 @@ private:
 
 public:
     Grid();
-    void loadFromFile(const std::string& filename);
-    void draw(sf::RenderWindow& window);
+    void loadFromFile(const string& filename);
+    void draw(RenderWindow& window);
     Cell& getCell(int x, int y);
     const Cell& getCell(int x, int y) const;
     void handleClick(int mouseX, int mouseY);

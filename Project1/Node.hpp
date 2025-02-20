@@ -7,11 +7,11 @@ using namespace std;
 using namespace sf;
 
 struct Node {
-    sf::Vector2i position;
+    Vector2i position;
     int gCost, hCost, fCost;
     Node* parent;
 
-    Node(sf::Vector2i pos);
+    Node(Vector2i pos);
     void calculateCosts(Node* end, int newG);
 };
 

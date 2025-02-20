@@ -3,16 +3,16 @@
 
 Enemy::Enemy(float x, float y) : Entity(x, y) {}
 
-void Enemy::update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) {
+void Enemy::update(float deltaTime, Grid& grid, Vector2f playerPosition) {
 
 }
 
 void Enemy::check_collision(const Entity& player) {
 
     if (shape.getGlobalBounds().intersects(player.shape.getGlobalBounds())) {
-        shape.setFillColor(sf::Color::Green); 
+        shape.setFillColor(Color::Green); 
     }
     else {
-        shape.setFillColor(sf::Color::Red); 
+        shape.setFillColor(Color::Red); 
     }
 }

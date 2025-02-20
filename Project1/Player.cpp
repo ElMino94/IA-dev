@@ -4,16 +4,16 @@
 
 Player::Player(float x, float y) : Entity(x, y), speed(n_speed), boostDuration(0), isBoosted(false) {}
 
-void Player::update(float deltaTime, Grid& grid, sf::Vector2f playerPosition) {
-    shape.setFillColor(sf::Color::Blue);
-    sf::Vector2f movement(0.f, 0.f);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) movement.y -= speed * deltaTime;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += speed * deltaTime;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) movement.x -= speed * deltaTime;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) movement.x += speed * deltaTime;
+void Player::update(float deltaTime, Grid& grid, Vector2f playerPosition) {
+    shape.setFillColor(Color::Blue);
+    Vector2f movement(0.f, 0.f);
+    if (Keyboard::isKeyPressed(Keyboard::Z)) movement.y -= speed * deltaTime;
+    if (Keyboard::isKeyPressed(Keyboard::S)) movement.y += speed * deltaTime;
+    if (Keyboard::isKeyPressed(Keyboard::Q)) movement.x -= speed * deltaTime;
+    if (Keyboard::isKeyPressed(Keyboard::D)) movement.x += speed * deltaTime;
 
-    sf::Vector2f newPosition = shape.getPosition() + movement;
-    sf::FloatRect newBounds(newPosition, shape.getSize());
+    Vector2f newPosition = shape.getPosition() + movement;
+    FloatRect newBounds(newPosition, shape.getSize());
 
     if (isBoosted) {
         boostDuration -= deltaTime;
