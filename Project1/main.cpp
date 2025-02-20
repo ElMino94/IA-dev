@@ -1,20 +1,13 @@
-#include <SFML/Graphics.hpp>
 #include "Player.hpp"
-#include "Enemy.hpp"
 #include "boost_pad.hpp"  
-#include "Grid.hpp"
-#include <vector>
 #include "Hunter.hpp"
 #include "Patrol.hpp"
-
-using namespace sf;
-using namespace std;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
 int main() {
-    RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
+    RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
     Player player(200, 400);
@@ -49,8 +42,8 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == Event::Closed)
                 window.close();
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
+            if (event.type == Event::MouseButtonPressed) {
+                if (event.mouseButton.button == Mouse::Left) {
                     grid.handleClick(event.mouseButton.x, event.mouseButton.y);
                 }
             }

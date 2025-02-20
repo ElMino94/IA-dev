@@ -8,7 +8,7 @@ class Hunter : public Entity {
 public:
     Hunter(float x, float y);
 
-    bool hasLineOfSight(const Vector2f& start, const Vector2f& end, const Grid& grid);
+    bool has_Line_Of_Sight(const Vector2f& start, const Vector2f& end, const Grid& grid);
 
     void update(float deltaTime, Grid& grid, Vector2f playerPosition) override;
     void draw(RenderWindow& window);
@@ -16,10 +16,10 @@ public:
 
 private:
     float speed = 100.0f; 
+    int path_Index = 0;
+    bool needs_Repath = false;
+    Clock move_Clock;
     vector<Vector2i> path;
-    int pathIndex = 0;
-    Clock moveClock;
-    bool needsRepath = false;
     Vector2i last_Path_Node; 
     Vector2f last_Position;
 };

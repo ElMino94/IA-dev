@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iostream>
  
-
 Grid::Grid() {
     cells.resize(GRID_HEIGHT, vector<Cell>(GRID_WIDTH, { true, {0, 0}, RectangleShape(Vector2f(CELL_SIZE, CELL_SIZE)) }));
     for (int y = 0; y < GRID_HEIGHT; ++y) {
