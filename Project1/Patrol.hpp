@@ -12,9 +12,7 @@ private:
 	Vector2f playerPosition;
 	BlackBoard blackboard;
 	unique_ptr<BTNode> behaviorTree;
-
 	
-
 public:
 	static const float SPEED;
 	static const float DETECTION_RADIUS;
