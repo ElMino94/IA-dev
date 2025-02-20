@@ -20,8 +20,8 @@ int main() {
     Player player(200, 400);
 
     vector<Patrol> enemies;
-    vector<Hunter> hunters = { Hunter(150, 100), Hunter(300, 200) };
-    vector<BoostPad> boostPads = { BoostPad(300, 500) }; 
+    vector<Hunter> hunters;
+    vector<BoostPad> boostPads; 
 
     Grid grid;
 
@@ -29,6 +29,12 @@ int main() {
 
     for (const auto& pos : grid.patrolPositions) {
         enemies.emplace_back(pos.x, pos.y);
+    }
+    for (const auto& pos : grid.hunter_Positions) {
+        hunters.emplace_back(pos.x, pos.y);
+    }
+    for (const auto& pos : grid.boost_Positions) {
+        boostPads.emplace_back(pos.x, pos.y);
     }
     enemies[0].setWaypoints({ {400, 200}, {400, 400}, {600, 400}, {600, 200} });
     enemies[1].setWaypoints({ {600, 200}, {600, 400}, {400, 400}, {400, 200} });

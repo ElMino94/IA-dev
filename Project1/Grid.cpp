@@ -40,7 +40,12 @@ void Grid::loadFromFile(const string& filename) {
             else if (line[x] == 'P') {
                 patrolPositions.push_back(Vector2f(x * CELL_SIZE, y * CELL_SIZE));
             }
-
+            else if (line[x] == 'h') {
+                hunter_Positions.push_back(Vector2f(x * CELL_SIZE, y * CELL_SIZE));
+            }
+            else if (line[x] == 'b') {
+                boost_Positions.push_back(Vector2f(x * CELL_SIZE, y * CELL_SIZE));
+            }
         }
     }
 }

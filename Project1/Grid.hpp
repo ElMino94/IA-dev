@@ -21,7 +21,7 @@ struct Cell {
 class Grid {
 private:
     vector<vector<Cell>> cells;
-    int wall_limit;
+
 public:
     Grid();
     void loadFromFile(const std::string& filename);
@@ -31,6 +31,8 @@ public:
     void handleClick(int mouseX, int mouseY);
 
 	vector<Vector2f> patrolPositions;
+    vector<Vector2f> hunter_Positions;
+    vector<Vector2f> boost_Positions;
 };
 
 #endif      
