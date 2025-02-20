@@ -13,6 +13,7 @@ public:
     void update(float deltaTime, Grid& grid, Vector2f playerPosition) override;
     void draw(RenderWindow& window);
     void check_collision(const Entity& player);
+
 private:
     float speed = 100.0f; 
     vector<Vector2i> path;

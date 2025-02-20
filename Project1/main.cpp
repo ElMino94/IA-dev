@@ -63,7 +63,6 @@ int main() {
         for (auto& hunter : hunters) {
             hunter.update(deltaTime, grid, player.shape.getPosition());
         }
-
         for (auto it = boostPads.begin(); it != boostPads.end(); ) {
             if (it->checkCollision(player.shape)) {
                 player.activateBoost(2.f);  
