@@ -12,33 +12,29 @@ int main() {
     RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Jeu SFML - IA Ennemis");
     window.setFramerateLimit(60);
 
-    Player player(200, 400); // Initialiser la position du joueur
+    Player player(200, 400); 
 
-    std::vector<Patrol> enemies; // Liste des patrouilleurs
+    std::vector<Patrol> enemies; 
     std::vector<Hunter> hunters;
     std::vector<BoostPad> boostPads;
 
     Grid grid;
-    grid.loadFromFile("map.txt"); // Charger la grille depuis le fichier
+    grid.loadFromFile("map.txt"); 
 
-    // Création des Patrols avec leurs positions de départ
     for (const auto& pos : grid.patrolPositions) {
-        Patrol patrol(pos.x, pos.y, 100.0f); // Rayon de détection à 100.0f
+        Patrol patrol(pos.x, pos.y, 100.0f); 
 
-        // Définition des waypoints en utilisant des indices de grille (Vector2i)
         std::vector<sf::Vector2i> patrolPattern = {
             {static_cast<int>(pos.x / CELL_SIZE), static_cast<int>((pos.y + 100) / CELL_SIZE)},
             {static_cast<int>((pos.x + 100) / CELL_SIZE), static_cast<int>((pos.y + 100) / CELL_SIZE)},
             {static_cast<int>((pos.x + 100) / CELL_SIZE), static_cast<int>(pos.y / CELL_SIZE)}
         };
 
-        // Passer le vecteur de waypoints avec des indices de grille (Vector2i) à setWaypoints
         patrol.setWaypoints(patrolPattern);
 
         enemies.push_back(patrol);
     }
 
-    // Initialisation des Hunters et BoostPads
     for (const auto& pos : grid.hunter_Positions) {
         hunters.emplace_back(pos.x, pos.y);
     }
@@ -63,18 +59,16 @@ int main() {
             }
         }
 
-        player.update(deltaTime, grid, player.shape.getPosition()); // Passer la position en pixels du joueur
+        player.update(deltaTime, grid, player.shape.getPosition()); 
 
-        // Mise à jour des Patrols
         for (auto& enemy : enemies) {
-            enemy.update(deltaTime, grid, player.shape.getPosition()); // Passer la position en pixels du joueur
+            enemy.update(deltaTime, grid, player.shape.getPosition()); 
         }
 
         for (auto& hunter : hunters) {
             hunter.update(deltaTime, grid, player.shape.getPosition());
         }
 
-        // Vérification des collisions avec les BoostPads
         for (auto it = boostPads.begin(); it != boostPads.end(); ) {
             if (it->checkCollision(player.shape)) {
                 player.activateBoost(2.f);
@@ -85,7 +79,6 @@ int main() {
             }
         }
 
-        // Affichage
         window.clear();
         grid.draw(window);
 

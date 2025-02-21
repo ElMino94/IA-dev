@@ -109,20 +109,16 @@ void Patrol::search(float deltaTime) {
 }
 
 bool Patrol::detectPlayer(const Grid& grid, Vector2f playerPos) {
-    // Calcul de la distance entre le patrol et le joueur en pixels
     float dx = playerPos.x - position.x;
     float dy = playerPos.y - position.y;
-    float distance = sqrt(dx * dx + dy * dy); // Distance en pixels
+    float distance = sqrt(dx * dx + dy * dy); 
 
-    // Vérifier si le joueur est dans le rayon de détection
     if (distance <= detectionRadius) {
-        // Vérification de la ligne de vue avec la grille
         int patrolX = static_cast<int>(position.x / CELL_SIZE);
         int patrolY = static_cast<int>(position.y / CELL_SIZE);
         int playerX = static_cast<int>(playerPos.x / CELL_SIZE);
         int playerY = static_cast<int>(playerPos.y / CELL_SIZE);
 
-        // Algorithme de parcours de ligne (similaire à Bresenham)
         int deltaX = abs(playerX - patrolX);
         int deltaY = abs(playerY - patrolY);
         int stepX = (patrolX < playerX) ? 1 : -1;
@@ -134,8 +130,6 @@ bool Patrol::detectPlayer(const Grid& grid, Vector2f playerPos) {
 
         while (x != playerX || y != playerY) {
             if (!grid.getCell(x, y).walkable) {
-                // Si un obstacle est détecté entre le patrol et le joueur
-                std::cout << "Obstacle détecté entre (" << patrolX << ", " << patrolY << ") et (" << playerX << ", " << playerY << ")" << std::endl;
                 return false;
             }
 
@@ -144,25 +138,21 @@ bool Patrol::detectPlayer(const Grid& grid, Vector2f playerPos) {
             if (e2 < deltaX) { error += deltaX; y += stepY; }
         }
 
-        // Si la distance est suffisante et que la ligne de vue est dégagée
-        std::cout << "Joueur détecté dans le rayon et en ligne de vue (" << patrolX << ", " << patrolY << ") -> (" << playerX << ", " << playerY << ")" << std::endl;
         return true;
     }
 
-    // Si la distance est trop grande, ne pas détecter le joueur
     return false;
 }
 
 
 void Patrol::setWaypoints(const std::vector<sf::Vector2i>& points) {
-    waypoints.clear(); // Vide le vecteur des waypoints
+    waypoints.clear();
 
-    // Conversion des indices de grille en positions en pixels (Vector2f)
     for (const auto& point : points) {
         waypoints.push_back(sf::Vector2f(point.x * CELL_SIZE, point.y * CELL_SIZE));
     }
 
     if (!waypoints.empty()) {
-        position = waypoints[0]; // Initialisation de la position à la première case
+        position = waypoints[0]; 
     }
 }
