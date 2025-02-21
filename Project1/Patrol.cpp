@@ -21,46 +21,42 @@ void Patrol::update(float deltaTime, Grid& grid, Vector2f playerPosition) {
 
     bool playerDetected = detectPlayer(grid, playerPosition);
 
-    std::cout << "Distance en cases: " << distanceInCells << std::endl;
-    std::cout << "Joueur détecté: " << playerDetected << std::endl;
-
-    // Vérifier l'état actuel du Patrol
     switch (currentState) {
     case PATROLLING:
-        shape.setFillColor(Color::Blue); // Bleu = mode patrouille
+        shape.setFillColor(Color::Blue); 
         patrol(deltaTime);
 
         if (distanceInCells <= 2.0f && playerDetected) {
-            currentState = CHASING;  // Si le joueur est détecté, passer en mode CHASING
+            currentState = CHASING;  
             lastPlayerPosition = playerPosition;
-            cooldownTimer = 1.0f;  // Ajout d'un cooldown avant de passer à SEARCHING ou CHASING
+            cooldownTimer = 1.0f;  
         }
         break;
 
     case CHASING:
-        shape.setFillColor(Color::Red); // Rouge = poursuite
+        shape.setFillColor(Color::Red); 
         chase(playerPosition, deltaTime);
 
-        if (distanceInCells > 2.0f || !playerDetected) {  // Si on perd le joueur, passer en mode SEARCHING
+        if (distanceInCells > 2.0f || !playerDetected) {  
             currentState = SEARCHING;
             searchTime = 0.0f;
-            cooldownTimer = 1.0f;  // Ajout d'un cooldown pour éviter le basculement trop rapide entre états
+            cooldownTimer = 1.0f;  
         }
         break;
 
     case SEARCHING:
-        shape.setFillColor(Color::Yellow); // Jaune = recherche
+        shape.setFillColor(Color::Yellow);
         searchTime += deltaTime;
         search(deltaTime);
 
         if (playerDetected) {
-            currentState = CHASING; // Si le joueur est retrouvé, passer à CHASING
+            currentState = CHASING; 
             lastPlayerPosition = playerPosition;
-            cooldownTimer = 1.0f;  // Ajout d'un cooldown avant de changer d'état
+            cooldownTimer = 1.0f;  
         }
         else if (searchTime >= maxSearchTime) {
-            currentState = PATROLLING; // Après un certain temps sans trouver, revenir à la patrouille
-            cooldownTimer = 1.0f;  // Ajout d'un cooldown avant de revenir en PATROLLING
+            currentState = PATROLLING; 
+            cooldownTimer = 1.0f;  
         }
         break;
     }
@@ -72,20 +68,16 @@ void Patrol::update(float deltaTime, Grid& grid, Vector2f playerPosition) {
 void Patrol::patrol(float deltaTime) {
     if (waypoints.empty()) return;
 
-    // Récupérer le waypoint actuel (en coordonnées en pixels)
     Vector2f target = waypoints[currentWaypointIndex];
 
-    // Calculer la direction et la distance pour se déplacer vers le waypoint
     Vector2f direction = target - position;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-    // Si la distance est supérieure à un seuil, on se déplace vers le waypoint
     if (distance > 1.0f) {
         direction /= distance;
         position += direction * SPEED * deltaTime;
     }
     else {
-        // Si on atteint le waypoint, passer au suivant
         currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.size();
     }
 

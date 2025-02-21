@@ -4,7 +4,7 @@
 Player::Player(float x, float y) : Entity(x, y), speed(n_speed), boostDuration(0), isBoosted(false) {}
 
 void Player::update(float deltaTime, Grid& grid, Vector2f playerPosition) {
-    shape.setFillColor(Color::Blue);
+    shape.setFillColor(Color::Magenta);
     Vector2f movement(0.f, 0.f);
     if (Keyboard::isKeyPressed(Keyboard::Z)) movement.y -= speed * deltaTime;
     if (Keyboard::isKeyPressed(Keyboard::S)) movement.y += speed * deltaTime;

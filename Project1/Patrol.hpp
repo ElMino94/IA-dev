@@ -32,6 +32,8 @@ public:
     void search(float deltaTime);
     bool detectPlayer(const Grid& grid, Vector2f playerPos);
 	void setWaypoints(const vector<Vector2i>& points);
+
+	
 };
 
 #endif
