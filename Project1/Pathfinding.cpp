@@ -18,7 +18,7 @@ vector<Vector2i> Pathfinding::findPath(Grid& grid, Vector2i start, Vector2i end)
         openList.erase(openList.begin());
 
         if (current->position == end) {
-            vector<sf::Vector2i> path;
+            vector<Vector2i> path;
             while (current) {
                 path.push_back(current->position);
                 current = current->parent;
