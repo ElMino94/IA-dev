@@ -5,7 +5,7 @@
 #include "Patrol.hpp"
 #include "Grid.hpp"
 
-const int WINDOW_WIDTH = 800;
+const int WINDOW_WIDTH = 840;
 const int WINDOW_HEIGHT = 600;
 
 int main() {
@@ -54,7 +54,7 @@ int main() {
                 window.close();
             if (event.type == Event::MouseButtonPressed) {
                 if (event.mouseButton.button == Mouse::Left) {
-                    grid.handleClick(event.mouseButton.x, event.mouseButton.y);
+                    grid.Place_wall(event.mouseButton.x, event.mouseButton.y);
                 }
             }
         }

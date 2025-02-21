@@ -66,19 +66,17 @@ const Cell& Grid::getCell(int x, int y) const
     return cells[y][x];
 }
 
-void Grid::handleClick(int mouseX, int mouseY) {
+void Grid::Place_wall(int mouseX, int mouseY) {
     int x = mouseX / CELL_SIZE;
     int y = mouseY / CELL_SIZE;
 
-    if (x >= 0 && x < GRID_WIDTH && y >= 0 && y < GRID_HEIGHT) {
-        if (cells[y][x].walkable) {
-            cells[y][x].walkable = !cells[y][x].walkable;
-            cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
-        }     
-        else if (!cells[y][x].walkable) {
-            cells[y][x].walkable = !cells[y][x].walkable;
-            cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
-        }
+    if (cells[y][x].walkable) {
+        cells[y][x].walkable = !cells[y][x].walkable;
+        cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
+    }
+    else if (!cells[y][x].walkable) {
+        cells[y][x].walkable = !cells[y][x].walkable;
+        cells[y][x].shape.setFillColor(cells[y][x].walkable ? Color::Transparent : Color::White);
     }
 }
 

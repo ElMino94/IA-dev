@@ -7,7 +7,7 @@
 using namespace sf;
 using namespace std;
 
-const int GRID_WIDTH = 20;
+const int GRID_WIDTH = 21;
 const int GRID_HEIGHT = 15;
 const int CELL_SIZE = 40;
 
@@ -27,7 +27,7 @@ public:
     void draw(RenderWindow& window);
     Cell& getCell(int x, int y);
     const Cell& getCell(int x, int y) const;
-    void handleClick(int mouseX, int mouseY);
+    void Place_wall(int mouseX, int mouseY);
 
 	vector<Vector2f> patrolPositions;
     vector<Vector2f> hunter_Positions;
